@@ -91,6 +91,7 @@ const exportJSON = () => {
 const prevStageWidth = useRef(stageSize.width);
 useEffect(() => {
   if (!token) return;
+
   fetch("https://annotation-project.onrender.com/images", {
     headers: {
       Authorization: `Bearer ${token}`
@@ -100,7 +101,9 @@ useEffect(() => {
     .then(data => {
       console.log("IMAGES:", data);
       setImages(data);
-    });
+    })
+    .catch(err => console.error(err));
+
 }, [token]);
   
  
