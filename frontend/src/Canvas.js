@@ -203,7 +203,7 @@ if (hasUnsavedRects) {
         }
       });
   
-      // remove from UI
+     
       setImages(prev => prev.filter(img => img.id !== currentImageId));
       setRects([]);
       setImageObj(null);
