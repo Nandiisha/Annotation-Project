@@ -449,7 +449,7 @@ const pos = {
         fontSize: 14
       }}
     >
-      
+      📤 Upload Image
       <input
         type="file"
         accept="image/*"
