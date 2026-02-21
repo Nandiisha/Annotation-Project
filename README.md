@@ -67,7 +67,14 @@ http://localhost:3000
 
 ## 📸 Screenshots
 
-(Add screenshots below)
+### 🔐 Login Page
+![Login](./screenshots/login.png)
+
+### 📊 Dashboard
+![Dashboard](./screenshots/dashboard.png)
+
+### 🖍️ Annotation Canvas
+![Canvas](./screenshots/canvas.png)
 
 ---
 
