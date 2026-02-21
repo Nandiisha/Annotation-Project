@@ -4,11 +4,13 @@ require("dotenv").config();
 
 const app = express();
 
-/* 🔥 VERY IMPORTANT: allow large images */
+app.use(cors({
+  origin: "*"
+}));
+
+/* body parser */
 app.use(express.json({ limit: "200mb" }));
 app.use(express.urlencoded({ limit: "200mb", extended: true }));
-
-app.use(cors());
 
 /* routes */
 const authRoutes = require("./routes/auth");
@@ -19,10 +21,13 @@ app.use("/api/auth", authRoutes);
 app.use("/api/annotations", annotationRoutes);
 app.use("/api/images", imageRoutes);
 
+/* test route */
 app.get("/", (req, res) => {
   res.send("API running");
 });
 
-app.listen(5001, () => {
-  console.log("Server running on port 5001");
+/* IMPORTANT for Render */
+const PORT = process.env.PORT || 5001;
+app.listen(PORT, () => {
+  console.log("Server running on port", PORT);
 });
