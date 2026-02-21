@@ -4,13 +4,14 @@ require("dotenv").config();
 
 const app = express();
 
+/* ✅ CORS */
 app.use(cors({
   origin: "*"
 }));
 
 /* body parser */
-app.use(express.json({ limit: "200mb" }));
-app.use(express.urlencoded({ limit: "200mb", extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 /* routes */
 const authRoutes = require("./routes/auth");
@@ -26,7 +27,7 @@ app.get("/", (req, res) => {
   res.send("API running");
 });
 
-/* IMPORTANT for Render */
+/* Render port fix */
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
   console.log("Server running on port", PORT);
