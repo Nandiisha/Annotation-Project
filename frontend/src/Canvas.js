@@ -91,7 +91,7 @@ const exportJSON = () => {
 const prevStageWidth = useRef(stageSize.width);
 useEffect(() => {
   if (!token) return;
-    fetch("http://localhost:5001/api/images", {
+  fetch("https://annotation-project.onrender.com/images", {
     headers: {
       Authorization: `Bearer ${token}`
     }
@@ -197,10 +197,9 @@ if (hasUnsavedRects) {
     if (!confirmDelete) return;
   
     try {
-      await fetch(`http://localhost:5001/api/images/${currentImageId}`, {
-        method: "DELETE",
+      await fetch("https://annotation-project.onrender.com/images", {
         headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${localStorage.getItem("token")}`
         }
       });
   
@@ -236,7 +235,7 @@ if (hasUnsavedRects) {
     image.onload = () => setImageObj(image);
   
     const res = await fetch(
-      `http://localhost:5001/api/annotations/${img.id}`,
+      `/api/annotations/${img.id}`,
       {
         headers: { Authorization: `Bearer ${token}` }
       }
@@ -271,16 +270,13 @@ if (hasUnsavedRects) {
       };
   
      
-      const res = await fetch("http://localhost:5001/api/images", {
+      const res = await fetch("https://annotation-project.onrender.com/images", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${localStorage.getItem("token")}`
         },
-        body: JSON.stringify({
-          imageData: base64,
-          imageName: file.name
-        })
+        body: JSON.stringify(data)
       });
   
       const data = await res.json();
@@ -373,7 +369,7 @@ const pos = {
   }
 
   try {
-    await fetch(`http://localhost:5001/api/annotations/${selectedId}`, {
+    await fetch(`/api/annotations/${selectedId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`
@@ -859,8 +855,8 @@ const pos = {
         const isExisting = selectedRect.image_id !== undefined;
     
         const url = isExisting
-          ? `http://localhost:5001/api/annotations/${selectedRect.id}`
-          : "http://localhost:5001/api/annotations";
+          ? `/api/annotations/${selectedRect.id}`
+          : "/api/annotations";
     
         const method = isExisting ? "PUT" : "POST";
     
