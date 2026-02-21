@@ -8,7 +8,7 @@ function Login({ setToken }) {
 
   /* ================= LOGIN ================= */
   const handleLogin = async () => {
-    const res = await fetch("https://https://annotation-project.onrender.com/auth/login", {
+    const res = await fetch("https://annotation-project.onrender.com/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -34,7 +34,7 @@ function Login({ setToken }) {
     }
   
     try {
-      const res = await fetch("https://https://annotation-project.onrender.com/auth/register", {
+      const res = await fetch("https://annotation-project.onrender.com/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
