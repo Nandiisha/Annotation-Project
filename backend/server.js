@@ -7,7 +7,7 @@ const app = express();
 /* ================= MIDDLEWARE ================= */
 app.use(
   cors({
-    origin: "*",
+    origin: "https://annotation-project.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
   })
