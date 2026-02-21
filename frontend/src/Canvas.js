@@ -264,36 +264,34 @@ if (hasUnsavedRects) {
     reader.onloadend = async () => {
       const base64 = reader.result;
   
-      // 🔹 SHOW IMAGE IMMEDIATELY ON CANVAS
+      // show image on canvas
       const img = new window.Image();
       img.src = base64;
-      img.onload = () => {
-        console.log("IMAGE LOADED TO CANVAS");
-        setImageObj(img);
-      };
+      img.onload = () => setImageObj(img);
   
-     
+      // ✅ SEND CORRECT DATA
       const res = await fetch("https://annotation-project.onrender.com/images", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`
+          Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify({
+          image_data: base64,
+          image_name: file.name
+        })
       });
   
       const data = await res.json();
-  
       console.log("IMAGE SAVED:", data);
   
       setCurrentImageId(data.id);
       setImages(prev => [data, ...prev]);
-      setRects([]); // clear old boxes
+      setRects([]);
     };
   
     reader.readAsDataURL(file);
   };
-
   const handleMouseDown = (e) => {
     // if (!imageObj || !drawMode || !currentImageId) {
     //   alert("Upload and select image first");
