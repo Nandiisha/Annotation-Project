@@ -6,8 +6,9 @@ function Login({ setToken }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  /* ================= LOGIN ================= */
   const handleLogin = async () => {
-    const res = await fetch("https://annotation-project.onrender.com/api/auth/login", {
+    const res = await fetch("http://localhost:5001/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -25,6 +26,7 @@ function Login({ setToken }) {
     }
   };
 
+  /* ================= REGISTER ================= */
   const handleRegister = async () => {
     if (!username || !password) {
       alert("Please fill all fields");
@@ -32,7 +34,7 @@ function Login({ setToken }) {
     }
   
     try {
-      const res = await fetch("https://annotation-project.onrender.com/api/auth/register", {
+      const res = await fetch("http://localhost:5001/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -135,7 +137,7 @@ function Login({ setToken }) {
   );
 }
 
-
+/* ================= STYLES ================= */
 
 const page = {
   minHeight: "100vh",

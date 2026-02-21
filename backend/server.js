@@ -4,13 +4,13 @@ require("dotenv").config();
 
 const app = express();
 
-/* allow Vercel frontend */
-app.use(cors({
-  origin: "*"
-}));
 
-app.use(express.json());
+app.use(express.json({ limit: "200mb" }));
+app.use(express.urlencoded({ limit: "200mb", extended: true }));
 
+app.use(cors());
+
+/* routes */
 const authRoutes = require("./routes/auth");
 const annotationRoutes = require("./routes/annotations");
 const imageRoutes = require("./routes/images");
@@ -23,7 +23,6 @@ app.get("/", (req, res) => {
   res.send("API running");
 });
 
-const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => {
-  console.log("Server running on port", PORT);
+app.listen(5001, () => {
+  console.log("Server running on port 5001");
 });
