@@ -237,8 +237,7 @@ if (hasUnsavedRects) {
     image.src = img.image_data;
     image.onload = () => setImageObj(image);
   
-    const res = await fetch(
-      `/api/annotations/${img.id}`,
+    const res = await fetch(`https://annotation-project.onrender.com/annotations/${img.id}`, 
       {
         headers: { Authorization: `Bearer ${token}` }
       }
@@ -370,7 +369,7 @@ const pos = {
   }
 
   try {
-    await fetch(`/api/annotations/${selectedId}`, {
+    await fetch(`https://annotation-project.onrender.com/annotations/${selectedId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`
@@ -856,8 +855,8 @@ const pos = {
         const isExisting = selectedRect.image_id !== undefined;
     
         const url = isExisting
-          ? `/api/annotations/${selectedRect.id}`
-          : "/api/annotations";
+        ? `https://annotation-project.onrender.com/annotations/${selectedRect.id}`
+        : `https://annotation-project.onrender.com/annotations`;
     
         const method = isExisting ? "PUT" : "POST";
     
